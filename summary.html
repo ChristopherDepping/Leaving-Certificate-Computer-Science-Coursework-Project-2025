@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Include the navigation bar -->
+    {% include 'navbar.html' %}
+
+    <h1>Survey Summary</h1>
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <p><strong>Sector with the most responses:</strong> {{ sector }}</p>
+        <p><strong>Average Gender Pay Gap:</strong> {{ payGap }}%</p>
+        <p><strong>Percentage of respondents who think the government is doing enough to reduce the gender pay gap:</strong></p>
+        <p><strong>Yes:</strong> {{ yes }}%</p>
+        <p><strong>No:</strong> {{ no }}%</p>
+        <h3>Survey Responses Database</h3>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Sector</th>
+                <th>Factors Contributing to Gender Pay Gap</th>
+                <th>Estimated Average Gender Pay Gap (%)</th>
+                <th>Do you think the Irish government is doing enough to reduce the gender pay gap?</th>
+            </tr>
+            {% for response in responses %}
+            <tr>
+                <td>{{ response[0] }}</td>
+                <td>{{ response[1] }}</td>
+                <td>{{ response[2] }}</td>
+                <td>{{ response[3] }}</td>
+                <td>{% if response[4] == 1 %} Yes {% else %} No {% endif %}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
