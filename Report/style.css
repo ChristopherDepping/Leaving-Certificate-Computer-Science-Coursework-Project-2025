@@ -1,0 +1,91 @@
+/* CSS files add styling rules to your content */
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif; 
+  /* font-family: "Serif", georgian;*/
+  margin: 2em;
+}
+
+h1 {
+  font-style: italic;
+  color: #35456b;    /* - Table of Contents */
+}
+ol { 
+  counter-reset: item; 
+  list-style-type: none; 
+}
+ol > li:before { 
+  content: counters(item, ".") ". "; 
+  counter-increment: item 
+}
+ul { 
+  list-style-type: disc; 
+}
+body {
+  margin: 40px;
+}
+
+.sidebar {
+        grid-area: sidebar;
+        font-size: 5px;
+    }
+
+    .content {
+        grid-area: content;
+        max-width: 100%; /* Ensure the content area does not exceed the container width */
+        overflow-x: auto; /* Add horizontal scroll if content overflows */
+    }
+
+    .header {
+        grid-area: header;
+    }
+
+
+    .wrapper {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 1fr 3fr; /* Adjust the column widths */
+        grid-template-areas:
+               "header  header"
+               "sidebar content";
+        background-color: rgb(214,128,0);
+        color: #444; 
+    }
+.box {
+  background-color: rgb(228,234,240);  	/* background colour of page. */
+  color: rgb(44,44,44); 				/* text colour */
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  
+}
+
+.header {
+  background-color: rgb(38,130,135);	/* box at top of page */
+}
+
+a{
+  color: rgb(0,97,104);	/* Table of Contents text colour */
+}
+img{
+  height: 10em;
+  width: 10em;
+}
+
+.fill {
+  width: 100%;  /* Set the desired width */
+  height: auto;  /* Maintain aspect ratio */
+  max-width: 1300px; /* Ensure the image does not exceed this width */
+}
+
+/* Ensure the table takes up the full width of its container */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Ensure borders are collapsed */
+}
+
+table th, table td {
+  padding: 8px; /* Add padding for better readability */
+  text-align: left; /* Align text to the left */
+  border: 1px solid rgb(214,128,0); /* Add a border to table cells */
+}
