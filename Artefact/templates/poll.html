@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function validateForm() {
+            var payGap = document.forms["surveyForm"]["payGap"].value;
+            if (payGap <= 0) {
+                alert("Pay Gap must be a positive number.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <!-- Include the navigation bar -->
+    {% include 'navbar.html' %}
+    
+    <h2>Gender Pay Gap in Ireland - Survey</h2>
+    <form name="surveyForm" action="/submit" method="post" onsubmit="return validateForm()">
+        <label for="sector">What sector in Ireland do you believe earns the most annually?</label><br>
+        <select id="sector" name="sector" required>
+            <option value="Industry (B to E)">Industry (B to E)</option>
+            <option value="Construction (F)">Construction (F)</option>
+            <option value="Wholesale and retail trade (G)">Wholesale and retail trade (G)</option>
+            <option value="Transportation and storage (H)">Transportation and storage (H)</option>
+            <option value="Accommodation and food service (I)">Accommodation and food service (I)</option>
+            <option value="Information and communication (J)">Information and communication (J)</option>
+            <option value="Financial, insurance, and real estate (K,L)">Financial, insurance, and real estate (K,L)</option>
+            <option value="Professional, scientific, and technical (M)">Professional, scientific, and technical (M)</option>
+            <option value="Administrative and support services (N)">Administrative and support services (N)</option>
+            <option value="Public administration and defence (O)">Public administration and defence (O)</option>
+            <option value="Education (P)">Education (P)</option>
+            <option value="Human health and social work (Q)">Human health and social work (Q)</option>
+            <option value="Arts, entertainment, recreation (R,S)">Arts, entertainment, recreation (R,S)</option>
+        </select><br><br>
+        <label for="factors">What do you believe is the primary factor contributing to the gender pay gap in Ireland? </label><br>
+        <input type="text" id="factors" name="factors" required><br><br>
+        <label for="payGap">What do you think is the average gender pay gap (%) in Ireland?</label><br>
+        <input type="number" step="0.01" id="payGap" name="payGap" min="0.01" required><br><br>
+        <label for="gov">Do you think the government is doing enough to reduce the gender pay gap?</label><br>
+        <input type="radio" id="gov_yes" name="gov" value="1" required> Yes<br>
+        <input type="radio" id="gov_no" name="gov" value="0" required> No<br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
